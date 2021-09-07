@@ -1,2 +1,2 @@
-# CleanArchitectureImplementation
+# Clean Architecture Implementation
 A Shop Web Site With Clean Architecture Implementation
