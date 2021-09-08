@@ -11,6 +11,7 @@
   <ItemGroup>
     <Folder Include="Areas\AdminPanel\Data\" />
     <Folder Include="Areas\AdminPanel\Models\" />
+    <Folder Include="wwwroot\SiteTheme\images\menu-main\card\" />
   </ItemGroup>
 
 </Project>
