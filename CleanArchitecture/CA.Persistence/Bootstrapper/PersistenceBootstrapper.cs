@@ -1,6 +1,9 @@
 ﻿using CA.Application.Interfaces.Contexts;
 using CA.Application.Services.Roles.Queries;
+using CA.Application.Services.Users.Commands.ChangeUserStatus;
+using CA.Application.Services.Users.Commands.EditUser;
 using CA.Application.Services.Users.Commands.RegisterUser;
+using CA.Application.Services.Users.Commands.RemoveUser;
 using CA.Application.Services.Users.Queries.GetUsers;
 using CA.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +26,9 @@ namespace CA.Persistence.Bootstrapper
             services.AddTransient<IGetUsersService, GetUsersService>();
             services.AddTransient<IRegisterUserService, RegisterUserService>();
             services.AddTransient<IGetRolesService, GetRolesService>();
+            services.AddTransient<IRemoveUserService, RemoveUserService>();
+            services.AddTransient<IChangeUserStatusService, ChangeUserStatusService>();
+            services.AddTransient<IEditUserService, EditUserService>();
         }
     }
 }
