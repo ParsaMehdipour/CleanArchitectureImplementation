@@ -23,12 +23,15 @@ namespace CA.Application.Services.Users.Queries.GetUsers
                 users = users.Where(x => x.Name.Contains(request.SearchKey) || x.Email.Contains(request.SearchKey));
             }
 
+            //users = users.Where(x => x.IsRemoved == false); done when model creating in context class
+
             int rowsCount = 0;
             var usersList = users.AsEnumerable().ToPaged(request.Page, 20, out rowsCount).Select(p => new GetUserDto
             {
                 Email = p.Email,
                 FullName = p.Name,
                 Id = p.Id,
+                IsActive = p.IsActive
             }).ToList();
 
 
