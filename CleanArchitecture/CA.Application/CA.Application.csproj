@@ -9,7 +9,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CA.Common\CA.Common.csproj" />
     <ProjectReference Include="..\CA.Domain\CA.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\Roles\Commands\" />
   </ItemGroup>
 
 </Project>
