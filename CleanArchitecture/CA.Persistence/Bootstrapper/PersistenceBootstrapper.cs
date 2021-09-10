@@ -1,6 +1,10 @@
 ﻿using CA.Application.Interfaces.Contexts;
+using CA.Application.Services.Roles.Queries;
+using CA.Application.Services.Users.Commands.RegisterUser;
+using CA.Application.Services.Users.Queries.GetUsers;
 using CA.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CA.Persistence.Bootstrapper
@@ -16,6 +20,9 @@ namespace CA.Persistence.Bootstrapper
 
 
             services.AddTransient<IDataBaseContext, DataBaseContext>();
+            services.AddTransient<IGetUsersService, GetUsersService>();
+            services.AddTransient<IRegisterUserService, RegisterUserService>();
+            services.AddTransient<IGetRolesService, GetRolesService>();
         }
     }
 }
