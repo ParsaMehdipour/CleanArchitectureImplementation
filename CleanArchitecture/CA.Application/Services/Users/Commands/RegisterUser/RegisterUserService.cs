@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using CA.Application.Interfaces.Contexts;
 using CA.Common.Dto;
 using CA.Domain.Entities.Users;
@@ -16,42 +18,106 @@ namespace CA.Application.Services.Users.Commands.RegisterUser
 
         public ResultDto<ResultRegisterUserDto> Execute(RequestRegisterUserDto request)
         {
-            var user = new User()
+            try
             {
-                Name = request.FullName,
-                Email = request.Email
-            };
-
-            var userInRoles = new List<UserRole>();
-
-            foreach (var item in request.Roles)
-            {
-                var role = _context.Roles.Find(item.Id);
-
-                userInRoles.Add(new UserRole
+                if (string.IsNullOrWhiteSpace(request.Email))
                 {
-                    RoleId = role.Id,
-                    Role = role,
-                    User = user,
-                    UserId = user.Id
-                });
+                    return new ResultDto<ResultRegisterUserDto>()
+                    {
+                        Data = new ResultRegisterUserDto()
+                        {
+                            UserId = 0,
+                        },
+                        IsSuccess = false,
+                        Message = "پست الکترونیک را وارد نمایید"
+                    };
+                }
+
+                if (string.IsNullOrWhiteSpace(request.FullName))
+                {
+                    return new ResultDto<ResultRegisterUserDto>()
+                    {
+                        Data = new ResultRegisterUserDto()
+                        {
+                            UserId = 0,
+                        },
+                        IsSuccess = false,
+                        Message = "نام را وارد نمایید"
+                    };
+                }
+                if (string.IsNullOrWhiteSpace(request.Password))
+                {
+                    return new ResultDto<ResultRegisterUserDto>()
+                    {
+                        Data = new ResultRegisterUserDto()
+                        {
+                            UserId = 0,
+                        },
+                        IsSuccess = false,
+                        Message = "رمز عبور را وارد نمایید"
+                    };
+                }
+                if (request.Password != request.RePassword)
+                {
+                    return new ResultDto<ResultRegisterUserDto>()
+                    {
+                        Data = new ResultRegisterUserDto()
+                        {
+                            UserId = 0,
+                        },
+                        IsSuccess = false,
+                        Message = "رمز عبور و تکرار آن برابر نیست"
+                    };
+                }
+
+                User user = new User()
+                {
+                    Email = request.Email,
+                    Name = request.FullName,
+                };
+
+                List<UserRole> userInRoles = new List<UserRole>();
+
+                foreach (var item in request.Roles)
+                {
+                    var roles = _context.Roles.Find(item.Id);
+                    userInRoles.Add(new UserRole
+                    {
+                        Role = roles,
+                        RoleId = roles.Id,
+                        User = user,
+                        UserId = user.Id,
+                    });
+                }
+                user.UserRoles = userInRoles;
+
+                _context.Users.Add(user);
+
+                _context.SaveChanges();
+
+                return new ResultDto<ResultRegisterUserDto>()
+                {
+                    Data = new ResultRegisterUserDto()
+                    {
+                        UserId = user.Id,
+
+                    },
+                    IsSuccess = true,
+                    Message = "ثبت نام کاربر انجام شد",
+                };
             }
-
-            user.UserRoles = userInRoles;
-
-            _context.SaveChanges();
-
-            return new ResultDto<ResultRegisterUserDto>()
+            catch (Exception)
             {
-                Data = new ResultRegisterUserDto()
+                return new ResultDto<ResultRegisterUserDto>()
                 {
-                    UserId = user.Id
-                },
-
-                IsSuccess = true,
-                Message = "کاربر با موفقیت ثبت نام شد"
-
-            };
+                    Data = new ResultRegisterUserDto()
+                    {
+                        UserId = 0,
+                    },
+                    IsSuccess = false,
+                    Message = "ثبت نام انجام نشد !"
+                };
+            }
         }
     }
 }
