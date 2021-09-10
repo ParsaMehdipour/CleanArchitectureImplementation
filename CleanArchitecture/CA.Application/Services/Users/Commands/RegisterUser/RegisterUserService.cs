@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using CA.Application.Interfaces.Contexts;
+using CA.Common;
 using CA.Common.Dto;
 using CA.Domain.Entities.Users;
 
@@ -70,10 +71,15 @@ namespace CA.Application.Services.Users.Commands.RegisterUser
                     };
                 }
 
+                var passwordHasher = new PasswordHasher();
+                var hashedPassword = passwordHasher.HashPassword(request.Password);
+
                 User user = new User()
                 {
                     Email = request.Email,
                     Name = request.FullName,
+                    Password = hashedPassword,
+                    IsActive = true
                 };
 
                 List<UserRole> userInRoles = new List<UserRole>();
