@@ -25,6 +25,10 @@ namespace CA.Persistence.Contexts
             modelBuilder.Entity<Role>().HasData(new Role { Id = 2, Name = nameof(UserRolesNames.Operator) });
             modelBuilder.Entity<Role>().HasData(new Role { Id = 3, Name = nameof(UserRolesNames.Customer) });
 
+
+            modelBuilder.Entity<User>().HasIndex(x => x.Email).IsUnique();
+
+            modelBuilder.Entity<User>().HasQueryFilter(x => !x.IsRemoved);
         }
     }
 }
