@@ -2,6 +2,7 @@
 using CA.Application.Services.Roles.Queries;
 using CA.Application.Services.Users.Commands.ChangeUserStatus;
 using CA.Application.Services.Users.Commands.EditUser;
+using CA.Application.Services.Users.Commands.LoginUser;
 using CA.Application.Services.Users.Commands.RegisterUser;
 using CA.Application.Services.Users.Commands.RemoveUser;
 using CA.Application.Services.Users.Queries.GetUsers;
@@ -29,6 +30,7 @@ namespace CA.Persistence.Bootstrapper
             services.AddTransient<IRemoveUserService, RemoveUserService>();
             services.AddTransient<IChangeUserStatusService, ChangeUserStatusService>();
             services.AddTransient<IEditUserService, EditUserService>();
+            services.AddTransient<ILoginUserService, LoginUserService>();
         }
     }
 }
