@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using CA.Domain.Entities.Category;
 using CA.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,6 +11,7 @@ namespace CA.Application.Interfaces.Contexts
         DbSet<User> Users { get; set; }
         DbSet<Role> Roles { get; set; }
         DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
 
         int SaveChanges(bool acceptAllChangesOnSuccess);
