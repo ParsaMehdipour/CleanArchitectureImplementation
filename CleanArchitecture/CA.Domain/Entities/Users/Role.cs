@@ -8,5 +8,6 @@ namespace CA.Domain.Entities.Users
         public string Name { get; set; }
 
         public List<UserRole> UserRoles { get; set; }
+        public bool IsRemoved { get; set; }
     }
 }
