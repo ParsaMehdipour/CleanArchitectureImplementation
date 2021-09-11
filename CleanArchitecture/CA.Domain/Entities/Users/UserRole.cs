@@ -9,5 +9,6 @@
 
         public long RoleId { get; set; }
         public Role Role { get; set; }
+        public bool IsRemoved { get; set; }
     }
 }
