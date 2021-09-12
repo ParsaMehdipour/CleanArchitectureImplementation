@@ -1,8 +1,7 @@
 ﻿using CA.Application.Interfaces.Contexts;
 using CA.Application.Interfaces.FacadePatterns;
-using CA.Application.Services.Category.Commands.AddNewCategory;
 using CA.Application.Services.Category.FacadePattern;
-using CA.Application.Services.Category.Queries.GetCategories;
+using CA.Application.Services.Product.FacadePattern;
 using CA.Application.Services.Roles.Queries;
 using CA.Application.Services.Users.Commands.ChangeUserStatus;
 using CA.Application.Services.Users.Commands.EditUser;
@@ -36,8 +35,9 @@ namespace CA.Persistence.Bootstrapper
             services.AddTransient<IEditUserService, EditUserService>();
             services.AddTransient<ILoginUserService, LoginUserService>();
 
-            services.AddTransient<IGetCategoriesService, GetCategoriesService>();
             services.AddTransient<ICategoryFacadePattern, CategoryFacadePattern>();
+            services.AddTransient<IProductFacadePattern, ProductFacadePattern>();
+
         }
     }
 }
