@@ -1,6 +1,7 @@
 ﻿using CA.Application.Interfaces.Contexts;
 using CA.Application.Interfaces.FacadePatterns;
 using CA.Application.Services.Category.Commands.AddNewCategory;
+using CA.Application.Services.Category.Queries.GetAllCategories;
 using CA.Application.Services.Category.Queries.GetCategories;
 
 namespace CA.Application.Services.Category.FacadePattern
@@ -31,6 +32,15 @@ namespace CA.Application.Services.Category.FacadePattern
             get
             {
                 return _getCategoriesService ??= new GetCategoriesService(_context);
+            }
+        }
+
+        private IGetAllCategoriesService _getAllCategoriesService;
+        public IGetAllCategoriesService GetAllCategoriesService
+        {
+            get
+            {
+                return _getAllCategoriesService = _getAllCategoriesService ?? new GetAllCategoriesService(_context);
             }
         }
     }
