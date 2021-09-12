@@ -68,13 +68,24 @@
                             </ul>
                         </li>
                         <li class="has-sub nav-item">
-                            <a href="#"><i class="icon-crop"></i><span data-i18n="" class="menu-title">  دسته بندی ها </span></a>
+                            <a href="#"><i class="icon-list"></i><span data-i18n="" class="menu-title">دسته بندی ها</span></a>
                             <ul class="menu-content">
                                 <li>
                                     <a asp-area="AdminPanel" asp-controller="Categories" asp-action="Index" asp-route-id="" class="menu-item">دسته بندی ها</a>
                                 </li>
                                 <li>
-                                    <a asp-area="AdminPanel" asp-controller="Categories" asp-action="AddNewCategory" class="menu-item">افزودن دسته بندی جدید *</a>
+                                    <a asp-area="AdminPanel" asp-controller="Categories" asp-action="AddNewCategory" class="menu-item">ثبت دسته جدید *</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-sub nav-item">
+                            <a href="#"><i class="icon-pencil"></i><span data-i18n="" class="menu-title">مدیریت محصولات</span></a>
+                            <ul class="menu-content">
+                                <li>
+                                    <a asp-area="AdminPanel" asp-controller="Products" asp-action="Index" class="menu-item">لیست محصولات</a>
+                                </li>
+                                <li>
+                                    <a asp-area="AdminPanel" asp-controller="Products" asp-action="AddNewProduct" class="menu-item">اضافه محصول جدید *</a>
                                 </li>
                             </ul>
                         </li>
