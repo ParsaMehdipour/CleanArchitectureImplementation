@@ -1,6 +1,8 @@
-﻿using System.Threading;
+﻿using System.Reflection.Metadata.Ecma335;
+using System.Threading;
 using System.Threading.Tasks;
 using CA.Domain.Entities.Category;
+using CA.Domain.Entities.Product;
 using CA.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,7 +14,9 @@ namespace CA.Application.Interfaces.Contexts
         DbSet<Role> Roles { get; set; }
         DbSet<UserRole> UserRoles { get; set; }
         public DbSet<Category> Categories { get; set; }
-
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductFeatures> ProductFeatures { get; set; }
+        public DbSet<ProductImages> ProductImages { get; set; }
 
         int SaveChanges(bool acceptAllChangesOnSuccess);
         int SaveChanges();
