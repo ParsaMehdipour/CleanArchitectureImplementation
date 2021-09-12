@@ -26,7 +26,7 @@ namespace CA.Application.Services.Users.Queries.GetUsers
             //users = users.Where(x => x.IsRemoved == false); done when model creating in context class
 
             int rowsCount = 0;
-            var usersList = users.AsEnumerable().ToPaged(request.Page, 20, out rowsCount).Select(p => new GetUserDto
+            var usersList = users.ToPaged(request.Page, 20, out rowsCount).Select(p => new GetUserDto
             {
                 Email = p.Email,
                 FullName = p.Name,
