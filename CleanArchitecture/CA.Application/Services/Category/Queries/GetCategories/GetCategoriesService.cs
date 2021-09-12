@@ -18,10 +18,7 @@ namespace CA.Application.Services.Category.Queries.GetCategories
         public ResultDto<List<CategoriesDto>> Execute(long? ParentId)
         {
             var categories = _context.Categories
-                .Include(p => p.ParentCategory)
-                .Include(p => p.SubCategories)
                 .Where(p => p.ParentCategoryId == ParentId)
-                .ToList()
                 .Select(p => new CategoriesDto
                 {
                     Id = p.Id,
