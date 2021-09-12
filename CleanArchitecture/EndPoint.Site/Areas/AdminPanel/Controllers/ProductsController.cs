@@ -19,9 +19,14 @@ namespace EndPoint.Site.Areas.AdminPanel.Controllers
             _productFacade = productFacade;
             _categoryFacade = categoryFacade;
         }
-        public IActionResult Index()
+        public IActionResult Index(int Page = 1, int PageSize = 20)
         {
-            return View();
+            return View(_productFacade.GetProductsForAdminService.Execute(Page,PageSize).Data);
+        }
+
+        public IActionResult Details(long Id)
+        {
+            return View(_productFacade.GetProductDetailsForAdminService.Execute(Id).Data);
         }
 
         [HttpGet]
