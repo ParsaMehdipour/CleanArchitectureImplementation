@@ -16,6 +16,10 @@ Categories List:
 
 ![Screenshot (4)](https://user-images.githubusercontent.com/75223567/132999845-e46347d1-388a-46d0-aad4-6172b7ce8691.png)
 
+Children:
+
+![Screenshot (11)](https://user-images.githubusercontent.com/75223567/132999986-6de289f1-e424-4663-8fe0-aa65c23b7328.png)
+
 
 Adding A New category:
 
