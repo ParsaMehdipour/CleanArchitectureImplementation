@@ -15,7 +15,7 @@ namespace CA.Application.Services.Product.Queries.GetProductsForSite
         {
             _context = context;
         }
-        public ResultDto<ResultProductsForSiteDto> Execute(long? catId, int Page)
+        public ResultDto<ResultProductsForSiteDto> Execute(string searchKey,long? catId, int Page)
         {
             int totalRow = 0;
             var productQuery = _context.Products
@@ -25,6 +25,11 @@ namespace CA.Application.Services.Product.Queries.GetProductsForSite
             if (catId != null)
             {
                 productQuery = productQuery.Where(p => p.CategoryId == catId || p.Category.ParentCategoryId == catId).AsQueryable();
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchKey))
+            {
+                productQuery = productQuery.Where(p => p.Name.Contains(searchKey) || p.Brand.Contains(searchKey)).AsQueryable();
             }
 
             var product = productQuery.ToPaged(Page, 10, out totalRow);
