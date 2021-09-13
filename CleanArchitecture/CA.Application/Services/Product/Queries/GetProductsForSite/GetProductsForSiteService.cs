@@ -15,11 +15,19 @@ namespace CA.Application.Services.Product.Queries.GetProductsForSite
         {
             _context = context;
         }
-        public ResultDto<ResultProductsForSiteDto> Execute(int Page)
+        public ResultDto<ResultProductsForSiteDto> Execute(long? catId, int Page)
         {
-            var products = _context.Products
-                .Include(p=>p.ProductImages)
-                .ToPaged(Page, 5, out var totalRow);
+            int totalRow = 0;
+            var productQuery = _context.Products
+                .Include(p => p.ProductImages).AsQueryable();
+
+
+            if (catId != null)
+            {
+                productQuery = productQuery.Where(p => p.CategoryId == catId || p.Category.ParentCategoryId == catId).AsQueryable();
+            }
+
+            var product = productQuery.ToPaged(Page, 10, out totalRow);
 
             Random rd = new Random();
             return new ResultDto<ResultProductsForSiteDto>
@@ -27,13 +35,13 @@ namespace CA.Application.Services.Product.Queries.GetProductsForSite
                 Data = new ResultProductsForSiteDto
                 {
                     TotalRow = totalRow,
-                    Products = products.Select(p => new ProductForSiteDto
+                    Products = product.Select(p => new ProductForSiteDto
                     {
                         Id = p.Id,
                         Star = rd.Next(1, 5),
                         Title = p.Name,
                         ImageSrc = p.ProductImages.FirstOrDefault().Src,
-                        Price=p.Price
+                        Price = p.Price
                     }).ToList(),
                 },
                 IsSuccess = true,
