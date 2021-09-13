@@ -57,7 +57,9 @@
                                                     <i class="fa fa-star"></i>
                                                 }
                                             </div>
-                                            <img src="~/@item.ImageSrc">
+                                            <a asp-controller="Products" asp-action="Details" asp-route-id="@item.Id">
+                                                <img src="~/@item.ImageSrc">
+                                            </a>
                                         </a>
                                     </div>
                                     <div class="title">
