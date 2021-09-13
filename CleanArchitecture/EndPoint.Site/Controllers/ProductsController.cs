@@ -11,15 +11,15 @@ namespace EndPoint.Site.Controllers
         {
             _productFacade = productFacade;
         }
-        public IActionResult Index(long? id,int page=1)
+        public IActionResult Index(long? catId,int page=1)
         {
-            return View(_productFacade.GetProductsForSiteService.Execute(id,page).Data);
+            return View(_productFacade.GetProductsForSiteService.Execute(catId,page).Data);
         }
 
 
-        //public IActionResult Detail(long Id)
-        //{
-        //    //return View(_productFacade.GetProductsDetailForSiteService.Execute(Id).Data);
-        //}
+        public IActionResult Details(long Id)
+        {
+            return View(_productFacade.GetProductDetailsForSiteService.Execute(Id).Data);
+        }
     }
 }
