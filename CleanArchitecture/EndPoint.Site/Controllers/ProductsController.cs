@@ -11,9 +11,9 @@ namespace EndPoint.Site.Controllers
         {
             _productFacade = productFacade;
         }
-        public IActionResult Index(int page=1)
+        public IActionResult Index(long? id,int page=1)
         {
-            return View(_productFacade.GetProductsForSiteService.Execute(page).Data);
+            return View(_productFacade.GetProductsForSiteService.Execute(id,page).Data);
         }
 
 
