@@ -4,6 +4,6 @@ namespace CA.Application.Services.Product.Queries.GetProductsForSite
 {
     public interface IGetProductsForSiteService
     {
-        ResultDto<ResultProductsForSiteDto> Execute(int Page);
+        ResultDto<ResultProductsForSiteDto> Execute(long? catId,int Page);
     }
 }
