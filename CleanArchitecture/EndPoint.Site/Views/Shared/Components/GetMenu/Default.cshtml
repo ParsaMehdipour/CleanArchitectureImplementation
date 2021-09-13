@@ -1,0 +1,32 @@
+﻿@model List<CA.Application.Services.Common.Queries.GetMenuItem.MenuItemDto>
+@{
+    Layout = null;
+}
+
+
+@foreach (var item in Model)
+{ 
+
+    <li id="nav-menu-item" class="menu-item nav-overlay">
+        <a asp-controller="Products" asp-action="Index" asp-route-id="@item.CatId" class="current-link-menu">
+            @item.Name
+        </a>
+
+        @if (item.Child.Any())
+        {
+            <ul class="sub-menu is-mega-menu-small">
+
+                @foreach (var itemChild in item.Child)
+                {
+                    <li class="menu-mega-item menu-item-type-mega-menu item-small">
+                        <a asp-controller="Products" asp-action="Index" asp-route-id="@itemChild.CatId" class="mega-menu-link">
+                            @itemChild.Name
+                        </a>
+                    </li>
+                }
+            </ul>
+        }
+
+    </li>
+}
+
