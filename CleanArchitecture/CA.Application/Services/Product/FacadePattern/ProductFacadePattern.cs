@@ -3,6 +3,7 @@ using CA.Application.Interfaces.FacadePatterns;
 using CA.Application.Services.Category.Commands.AddNewCategory;
 using CA.Application.Services.Product.Commands.AddNewProduct;
 using CA.Application.Services.Product.Queries.GetProductDetailsForAdmin;
+using CA.Application.Services.Product.Queries.GetProductDetailsForSite;
 using CA.Application.Services.Product.Queries.GetProductsForAdmin;
 using CA.Application.Services.Product.Queries.GetProductsForSite;
 using Microsoft.AspNetCore.Hosting;
@@ -57,6 +58,16 @@ namespace CA.Application.Services.Product.FacadePattern
             get
             {
                 return _getProductsForSiteService ??= new GetProductsForSiteService(_context);
+            }
+        }
+
+        private GetProductDetailsForSiteService _getProductDetailsForSiteService;
+
+        public IGetProductDetailsForSiteService GetProductDetailsForSiteService
+        {
+            get
+            {
+                return _getProductDetailsForSiteService ??= new GetProductDetailsForSiteService(_context);
             }
         }
     }
