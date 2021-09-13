@@ -1,6 +1,7 @@
 ﻿using CA.Application.Interfaces.Contexts;
 using CA.Application.Interfaces.FacadePatterns;
 using CA.Application.Services.Category.FacadePattern;
+using CA.Application.Services.Common.Queries.GetCategoriesForSearch;
 using CA.Application.Services.Common.Queries.GetMenuItem;
 using CA.Application.Services.Product.FacadePattern;
 using CA.Application.Services.Roles.Queries;
@@ -12,7 +13,6 @@ using CA.Application.Services.Users.Commands.RemoveUser;
 using CA.Application.Services.Users.Queries.GetUsers;
 using CA.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CA.Persistence.Bootstrapper
@@ -40,6 +40,7 @@ namespace CA.Persistence.Bootstrapper
             services.AddTransient<IProductFacadePattern, ProductFacadePattern>();
 
             services.AddScoped<IGetMenuItemService, GetMenuItemService>();
+            services.AddScoped<IGetCategoriesForSearchService,GetCategoriesForSearchService>();
 
         }
     }
