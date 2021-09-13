@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Services\Common\Commands\" />
     <Folder Include="Services\Roles\Commands\" />
   </ItemGroup>
 
